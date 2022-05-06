@@ -3,12 +3,10 @@
 <h1>Tweets</h1>
 
 <div id="tweets">
+  <%= render "form", tweet: Tweet.new %>
   <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
+      <%= link_to tweet do%>
+        <%= render "card", tweet: tweet %>
+      <% end %>
   <% end %>
 </div>
-
-<%= link_to "New tweet", new_tweet_path %>
