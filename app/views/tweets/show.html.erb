@@ -2,6 +2,43 @@
 
 <%= render @tweet %>
 
+<%= form_with(model: @comments) do |form| %>
+  <% if current_user %>
+    <div>
+      <%= form.label :user_id, style: "display: block" %>
+      <%= form.text_field :user_id, value: current_user.id %>
+    </div>
+
+    <div>
+      <%= form.label :tweet_id, style: "display: block" %>
+      <%= form.text_field :tweet_id%>
+    </div>
+    <div>
+      <%= form.text_area :body %>
+    </div>
+    <div>
+      <%= form.submit "Comentar" %>
+    </div>
+  <% end %>
+<%end%>
+
+<%
+=begin%>
+ <div id="tweets">
+
+  <%= render "tweets/form", {tweet: @current_tweet} %>
+  <% @tweet.comments do |tweet| %>
+    <%= link_to tweet do%>
+      <%= render "card", tweet: tweet%>
+    <% end %>
+  <% end %>
+
+</div> 
+<%
+=end%>
+
+<%= @tweet.comments.map%>
+
 <div>
   <%= link_to "Edit this tweet", edit_tweet_path(@tweet) %> |
   <%= link_to "Back to tweets", tweets_path %>
