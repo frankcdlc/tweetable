@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1
   def show
+    @current_comment = Tweet.find(params[:id]).comments.new(user: current_user)
   end
 
   # GET /comments/new
