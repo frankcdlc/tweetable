@@ -11,15 +11,29 @@
   </head>
 
   <body>
+
+    <ul class="nav--links expandable">
+      <li>
+      <% if current_user%>
+        <p><%=current_user.username%> </p>
+      <% end %>
+      </li>
+      <li><%= link_to "Tweets", root_path, class: "link text-sm" %>
+    <% if current_user %>
+      
+      <li><%=button_to "Log Out", destroy_user_session_path, :method=> :delete, class:"button button--secondary button--sm" %></li>
+
     <li><%= link_to "Tweets", root_path, class: "link text-sm" %>
     <% if user_signed_in? %>
       <p>Welcome <%= current_user.email %></p>
       <div>
         <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
       </div>
+
     <% else %>
       <li><%=button_to "Log In", new_user_session_path, :method => :get, class:"button button--primary button--sm" %></li>
     <% end %>
+    </ul>
     <%= yield %>
   </body>
 </html>
