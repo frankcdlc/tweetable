@@ -8,8 +8,8 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1
   def show
+    @current_tweet = Tweet.find_by(params[:user_id])
   end
-
   # GET /tweets/new
   def new
     @tweet = Tweet.new
